@@ -2,7 +2,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 import generateTrainingData
-
+import helperFunctions
 words, genders = generateTrainingData.separateNounsFromGenders()
 words, genders = generateTrainingData.genTrainingData(words, genders)
 ratio = 0.9
@@ -32,19 +32,21 @@ model = keras.Sequential([
 
 model.compile(optimizer='adam', loss='categorical_crossentropy',
               metrics=['accuracy'])
-losses = model.fit(x_train, y_train,
+# losses = model.fit(x_train, y_train,
 
-                   validation_data=(x_val, y_val),
+#                    validation_data=(x_val, y_val),
 
 
-                   batch_size=64,
-                   epochs=100,
+#                    batch_size=64,
+#                    epochs=100,
 
-                   )
-                   
-model.save_weights("./weights")
+#                    )
+
+model.load_weights("./weights")
+model.fit(x_train, y_train, validation_data=(x_val, y_val),
+          batch_size=64, epochs=1)
 print(model.summary())
 print(model.predict(
-    [[ord(i) for i in "vater" + (" " * 67)], [ord(i) for i in "uhr" + (" " * 69)]]))
+    [helperFunctions.convertStrToArr("vater"), helperFunctions.convertStrToArr("gesundheit")]))
 # print(model.predict([[ord(i) for i in "-" * 68],[ord(i) for i in "-" * 68]]))
 # model.summary()
