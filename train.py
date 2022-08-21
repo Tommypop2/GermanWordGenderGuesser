@@ -39,7 +39,7 @@ losses = model.fit(x_train, y_train,
 
 
                    batch_size=64,
-                    epochs=100,
+                   epochs=100,
 
                    )
 

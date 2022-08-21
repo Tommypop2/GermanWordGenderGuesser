@@ -1,8 +1,5 @@
-from operator import index, indexOf
-import numpy as np
-import tensorflow as tf
+from operator import indexOf
 from tensorflow import keras
-import generateTrainingData
 import helperFunctions
 model = keras.Sequential([
     keras.layers.Dense(
