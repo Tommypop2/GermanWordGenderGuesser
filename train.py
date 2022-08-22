@@ -4,19 +4,7 @@ from tensorflow import keras
 import generateTrainingData
 import helperFunctions
 iterations = 0
-while iterations < 10:
-    words, genders = generateTrainingData.separateNounsFromGenders()
-    words, genders = generateTrainingData.genTrainingData(words, genders)
-    ratio = 0.9
-    train_count = int(len(words) * ratio)
-    test_count = len(words) - train_count
-    x_train = words[:train_count]
-    y_train = genders[:train_count]
-    # x_train = words
-    # y_train = genders
-    x_val = words[:test_count]
-    y_val = genders[:test_count]
-    model = keras.Sequential([
+model = keras.Sequential([
         keras.layers.Dense(
             units=72, activation="relu"),
         keras.layers.Dense(units=144, activation='relu'),
@@ -32,16 +20,29 @@ while iterations < 10:
     ])
 
 
-    model.compile(optimizer='adam', loss='categorical_crossentropy',
+model.compile(optimizer='adam', loss='categorical_crossentropy',
                 metrics=['accuracy'])
-    model.load_weights("./weights")
+model.load_weights("./weights")
+while iterations < 5:
+    words, genders = generateTrainingData.separateNounsFromGenders()
+    words, genders = generateTrainingData.genTrainingData(words, genders)
+    ratio = 0.9
+    train_count = int(len(words) * ratio)
+    test_count = len(words) - train_count
+    x_train = words[:train_count]
+    y_train = genders[:train_count]
+    # x_train = words
+    # y_train = genders
+    x_val = words[:test_count]
+    y_val = genders[:test_count]
+   
     losses = model.fit(x_train, y_train,
 
                     validation_data=(x_val, y_val),
 
 
                     batch_size=64,
-                    epochs=10,
+                    epochs=50,
 
                     )
 
