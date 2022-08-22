@@ -12,8 +12,3 @@ while True:
         value = i[key]
         print(f"{value}% chance {key}")
     print("\n\n")
-# print(predictionArr[0])
-# print(model.predict(
-#     [helperFunctions.convertStrToArr("vater"), helperFunctions.convertStrToArr("gesundheit")]))
-# print(model.predict([[ord(i) for i in "-" * 68],[ord(i) for i in "-" * 68]]))
-# model.summary()
