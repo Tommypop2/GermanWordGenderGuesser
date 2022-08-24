@@ -26,6 +26,22 @@ class Predictor():
         self.model = model
 
     def predict(self, word):
-        strasArr = helperFunctions.convertStrToArr(word)
-        prediction = self.model.predict([strasArr])
-        print(prediction)
+        inp = str(word).lower()
+        predictionArr = self.model.predict(
+            [helperFunctions.convertStrToArr(inp)])
+        scaler = 100/sum(predictionArr[0])
+        percentages = [{"masculine": round(predictionArr[0][0] * scaler, 2)},
+                       {"feminine": round(predictionArr[0][1] * scaler, 2)},
+                       {"plural": round(predictionArr[0][2] * scaler, 2)}]
+        while True:
+            swaps = 0
+            for i in range(1, len(percentages)):
+                currentElement = percentages[i]
+                previousElement = percentages[i-1]
+                if (currentElement[list(percentages[i].keys())[0]] > previousElement[list(percentages[i-1].keys())[0]]):
+                    percentages[i] = previousElement
+                    percentages[i-1] = currentElement
+                    swaps += 1
+            if (swaps == 0):
+                break
+        return percentages

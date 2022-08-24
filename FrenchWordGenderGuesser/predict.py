@@ -7,5 +7,8 @@ while True:
         break
     inp = str(inp).strip()
     predictions = predictor.predict(inp)
-    print(predictions)
+    for i in predictions:
+        key = list(i.keys())[0]
+        value = i[key]
+        print(f"{value}% chance {key}")
     print("\n\n")

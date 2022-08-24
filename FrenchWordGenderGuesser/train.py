@@ -22,6 +22,7 @@ model = keras.Sequential([
 
 model.compile(optimizer='adam', loss='categorical_crossentropy',
                 metrics=['accuracy'])
+model.load_weights("./weights")
 while iterations < 1:
     words, genders = generateTrainingData.separateNounsFromGenders()
     words, genders = generateTrainingData.genTrainingData(words, genders)

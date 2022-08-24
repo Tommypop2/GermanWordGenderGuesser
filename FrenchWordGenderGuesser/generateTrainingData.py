@@ -27,11 +27,13 @@ def separateNounsFromGenders():
         elif (contains(genderArr, "feminine")):
             gender = [0, 1, 0]
             randomInt = randint(1,100)
-            if(randomInt <= 18.2486865 == False):
+            if((randomInt <= 18.2486865) == False):
                 continue
         elif (contains(genderArr, "plural")):
             gender = [0, 0, 1]
-            continue
+            randomInt = randint(1,100)
+            if((randomInt <= 1.18819558) == False):
+                continue
         if (gender == None):
             continue
         words.append(word)
