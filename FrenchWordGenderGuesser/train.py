@@ -4,6 +4,7 @@ from tensorflow import keras
 import generateTrainingData
 import helperFunctions
 iterations = 0
+
 model = keras.Sequential([
         keras.layers.Dense(
             units=72, activation="relu"),
@@ -23,7 +24,7 @@ model = keras.Sequential([
 model.compile(optimizer='adam', loss='categorical_crossentropy',
                 metrics=['accuracy'])
 model.load_weights("./weights")
-while iterations < 1:
+while iterations < 10:
     words, genders = generateTrainingData.separateNounsFromGenders()
     words, genders = generateTrainingData.genTrainingData(words, genders)
     ratio = 0.9

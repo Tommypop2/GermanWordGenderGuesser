@@ -1,4 +1,3 @@
-from tensorflow import keras
 from predictor import Predictor
 predictor = Predictor()
 while True:
