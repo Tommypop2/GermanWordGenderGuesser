@@ -1,7 +1,6 @@
 from operator import contains
 from random import shuffle, randint
 import numpy as np
-import json
 
 
 def separateNounsFromGenders():
@@ -17,7 +16,7 @@ def separateNounsFromGenders():
         if (splitLine[1] == "\n"):
             continue
         word = splitLine[0].lower()
-        
+
         genderArr = splitLine[1]
         if (contains(genderArr, "[") == False):
             continue
@@ -26,21 +25,19 @@ def separateNounsFromGenders():
             gender = [1, 0, 0]
         elif (contains(genderArr, "feminine")):
             gender = [0, 1, 0]
-            randomInt = randint(1,100)
-            if((randomInt <= 18.2486865) == False):
+            randomInt = randint(1, 100)
+            if ((randomInt <= 18.2486865) == False):
                 continue
         elif (contains(genderArr, "plural")):
             gender = [0, 0, 1]
-            randomInt = randint(1,100)
-            if((randomInt <= 1.18819558) == False):
+            randomInt = randint(1, 100)
+            if ((randomInt <= 1.18819558) == False):
                 continue
         if (gender == None):
             continue
         words.append(word)
         genders.append(gender)
     return words, genders
-
-
 
 
 def genTrainingData(inpNouns, inpGenders):
