@@ -23,7 +23,7 @@ model = keras.Sequential([
 model.compile(optimizer='adam', loss='categorical_crossentropy',
               metrics=['accuracy'])
 model.load_weights("./weights")
-while iterations < 5:
+while iterations < 1:
     words, genders = generateTrainingData.separateNounsFromGenders()
     words, genders = generateTrainingData.genTrainingData(words, genders)
     ratio = 0.9
@@ -42,7 +42,7 @@ while iterations < 5:
 
 
                        batch_size=64,
-                       epochs=25,
+                       epochs=200,
 
                        )
 

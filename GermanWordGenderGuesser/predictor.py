@@ -4,6 +4,7 @@ import helperFunctions
 
 class Predictor():
     def __init__(self) -> None:
+        keras.backend.set_learning_phase(1)
         model = keras.Sequential([
             keras.layers.Dense(
                 units=72, activation="relu"),
